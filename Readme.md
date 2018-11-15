@@ -1,3 +1,12 @@
+<!-- default file list -->
+*Files to look at*:
+
+* [Form1.cs](./CS/dxWinFormsSample/Form1.cs) (VB: [Form1.vb](./VB/dxWinFormsSample/Form1.vb))
+* [CustomLabelReportBuilder.cs](./CS/dxWinFormsSample/LabelReportRuntime/CustomLabelReportBuilder.cs) (VB: [CustomLabelReportBuilder.vb](./VB/dxWinFormsSample/LabelReportRuntime/CustomLabelReportBuilder.vb))
+* [CustomLabelReportModel.cs](./CS/dxWinFormsSample/LabelReportRuntime/CustomLabelReportModel.cs) (VB: [CustomLabelReportModel.vb](./VB/dxWinFormsSample/LabelReportRuntime/CustomLabelReportModel.vb))
+* [LabelReportValuesHelper.cs](./CS/dxWinFormsSample/LabelReportRuntime/LabelReportValuesHelper.cs) (VB: [LabelReportValuesHelper.vb](./VB/dxWinFormsSample/LabelReportRuntime/LabelReportValuesHelper.vb))
+* [Program.cs](./CS/dxWinFormsSample/Program.cs) (VB: [Program.vb](./VB/dxWinFormsSample/Program.vb))
+<!-- default file list end -->
 # How to create a label report at runtime
 
 
