@@ -29,10 +29,10 @@ Namespace dxWinFormsSample
             If labelReport Is Nothing Then
                 labelReport = New XtraReport()
             End If
-            Call (New ReportDesignTool(labelReport)).ShowRibbonDesignerDialog(DevExpress.LookAndFeel.UserLookAndFeel.Default)
+            CType(New ReportDesignTool(labelReport), ReportDesignTool).ShowRibbonDesignerDialog(DevExpress.LookAndFeel.UserLookAndFeel.Default)
         End Sub
 
-        Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
+        Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
             helper = New LabelReportValuesHelper()
             InitLabelProductEditor()
             InitProductNumberEditor()
@@ -86,7 +86,8 @@ Namespace dxWinFormsSample
             BeginInvoke(CType(Sub()
                 lookUpProductNumber.EditValue = (TryCast(lookUpProductNumber.Properties.DataSource, List(Of LabelDetails))).First().Id
 
-            End Sub, MethodInvoker))
+            End Sub, MethodInvoker)
+           )
         End Sub
         Private Sub LookUpProductNumber_EditValueChanged(ByVal sender As Object, ByVal e As EventArgs)
             Dim gridLookUpEdt = (TryCast(sender, GridLookUpEdit))
@@ -139,7 +140,7 @@ Namespace dxWinFormsSample
         End Sub
 
         Private Sub simpleButton1_Click(ByVal sender As Object, ByVal e As EventArgs)
-            Call (New ReportDesignTool(New XtraReport())).ShowRibbonDesignerDialog()
+            CType(New ReportDesignTool(New XtraReport()), ReportDesignTool).ShowRibbonDesignerDialog()
         End Sub
     End Class
 End Namespace
