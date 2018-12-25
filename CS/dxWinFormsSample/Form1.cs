@@ -139,7 +139,13 @@ namespace dxWinFormsSample {
                 }
             }
         }
-        private void UnitComboBox_Closed(object sender, DevExpress.XtraEditors.Controls.ClosedEventArgs e) {
+
+        private void simpleButton1_Click(object sender, EventArgs e) {
+            new ReportDesignTool(new XtraReport()).ShowRibbonDesignerDialog();
+        }
+
+        private void UnitComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
             if ((sender as BaseEdit).EditValue != null && (sender as BaseEdit).EditValue is GraphicsUnit)
                 ConvertValues((GraphicsUnit)(sender as BaseEdit).EditValue,
                 LabelWidthSpinEdit.EditValue,
@@ -150,10 +156,6 @@ namespace dxWinFormsSample {
                 TopMarginSpinEdit.EditValue,
                 LeftMarginSpinEdit.EditValue,
                 RightMarginSpinEdit.EditValue);
-        }
-
-        private void simpleButton1_Click(object sender, EventArgs e) {
-            new ReportDesignTool(new XtraReport()).ShowRibbonDesignerDialog();
         }
     }
 }
