@@ -362,7 +362,7 @@
             this.UnitComboBox.Size = new System.Drawing.Size(305, 20);
             this.UnitComboBox.StyleController = this.dataLayoutControl1;
             this.UnitComboBox.TabIndex = 19;
-            this.UnitComboBox.SelectedIndexChanged += new System.EventHandler(this.UnitComboBox_SelectedIndexChanged);
+            this.UnitComboBox.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.UnitComboBox_Closed);
             // 
             // layoutControlGroup1
             // 
