@@ -29,10 +29,10 @@ Namespace dxWinFormsSample
             If labelReport Is Nothing Then
                 labelReport = New XtraReport()
             End If
-            CType(New ReportDesignTool(labelReport), ReportDesignTool).ShowRibbonDesignerDialog(DevExpress.LookAndFeel.UserLookAndFeel.Default)
+            Call (New ReportDesignTool(labelReport)).ShowRibbonDesignerDialog(DevExpress.LookAndFeel.UserLookAndFeel.Default)
         End Sub
 
-        Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
+        Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
             helper = New LabelReportValuesHelper()
             InitLabelProductEditor()
             InitProductNumberEditor()
@@ -86,8 +86,7 @@ Namespace dxWinFormsSample
             BeginInvoke(CType(Sub()
                 lookUpProductNumber.EditValue = (TryCast(lookUpProductNumber.Properties.DataSource, List(Of LabelDetails))).First().Id
 
-            End Sub, MethodInvoker)
-           )
+            End Sub, MethodInvoker))
         End Sub
         Private Sub LookUpProductNumber_EditValueChanged(ByVal sender As Object, ByVal e As EventArgs)
             Dim gridLookUpEdt = (TryCast(sender, GridLookUpEdit))
@@ -133,14 +132,15 @@ Namespace dxWinFormsSample
                 End If
             End If
         End Sub
-        Private Sub UnitComboBox_Closed(ByVal sender As Object, ByVal e As DevExpress.XtraEditors.Controls.ClosedEventArgs) Handles UnitComboBox.Closed
+
+        Private Sub simpleButton1_Click(ByVal sender As Object, ByVal e As EventArgs)
+            Call (New ReportDesignTool(New XtraReport())).ShowRibbonDesignerDialog()
+        End Sub
+
+        Private Sub UnitComboBox_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles UnitComboBox.SelectedIndexChanged
             If (TryCast(sender, BaseEdit)).EditValue IsNot Nothing AndAlso TypeOf (TryCast(sender, BaseEdit)).EditValue Is GraphicsUnit Then
                 ConvertValues(CType((TryCast(sender, BaseEdit)).EditValue, GraphicsUnit), LabelWidthSpinEdit.EditValue, LabelHeightSpinEdit.EditValue, VerticalPitchSpinEdit.EditValue, HorizontalPitchSpinEdit.EditValue, BottomMarginSpinEdit.EditValue, TopMarginSpinEdit.EditValue, LeftMarginSpinEdit.EditValue, RightMarginSpinEdit.EditValue)
             End If
-        End Sub
-
-        Private Sub simpleButton1_Click(ByVal sender As Object, ByVal e As EventArgs)
-            CType(New ReportDesignTool(New XtraReport()), ReportDesignTool).ShowRibbonDesignerDialog()
         End Sub
     End Class
 End Namespace
