@@ -132,15 +132,14 @@ Namespace dxWinFormsSample
                 End If
             End If
         End Sub
-
-        Private Sub simpleButton1_Click(ByVal sender As Object, ByVal e As EventArgs)
-            Call (New ReportDesignTool(New XtraReport())).ShowRibbonDesignerDialog()
-        End Sub
-
-        Private Sub UnitComboBox_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles UnitComboBox.SelectedIndexChanged
+        Private Sub UnitComboBox_Closed(ByVal sender As Object, ByVal e As DevExpress.XtraEditors.Controls.ClosedEventArgs) Handles UnitComboBox.Closed
             If (TryCast(sender, BaseEdit)).EditValue IsNot Nothing AndAlso TypeOf (TryCast(sender, BaseEdit)).EditValue Is GraphicsUnit Then
                 ConvertValues(CType((TryCast(sender, BaseEdit)).EditValue, GraphicsUnit), LabelWidthSpinEdit.EditValue, LabelHeightSpinEdit.EditValue, VerticalPitchSpinEdit.EditValue, HorizontalPitchSpinEdit.EditValue, BottomMarginSpinEdit.EditValue, TopMarginSpinEdit.EditValue, LeftMarginSpinEdit.EditValue, RightMarginSpinEdit.EditValue)
             End If
+        End Sub
+
+        Private Sub simpleButton1_Click(ByVal sender As Object, ByVal e As EventArgs)
+            Call (New ReportDesignTool(New XtraReport())).ShowRibbonDesignerDialog()
         End Sub
     End Class
 End Namespace
