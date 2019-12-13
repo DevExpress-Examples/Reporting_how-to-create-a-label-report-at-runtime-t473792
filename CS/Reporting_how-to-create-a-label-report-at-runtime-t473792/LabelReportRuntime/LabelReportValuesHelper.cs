@@ -1,4 +1,4 @@
-﻿using DevExpress.XtraReports.Wizards.Labels;
+using DevExpress.XtraReports.Wizards.Labels;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Linq;

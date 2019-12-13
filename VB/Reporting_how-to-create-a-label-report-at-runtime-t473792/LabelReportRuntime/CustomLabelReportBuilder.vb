@@ -54,7 +54,7 @@ Namespace dxWinFormsSample
             panel.Borders = BorderSide.All
             detail.HeightF = XRConvert.Convert(model.VerticalPitch, labelDpi, report.Dpi)
 
-            Dim labelInfo = DevExpress.XtraReports.Wizards.Builder.LabelInfoFactory.Create(GetDefaultLabelReportMode(model))
+            Dim labelInfo = DevExpress.XtraReports.Wizards.Builder.ReportInfoFactory.CreateLabelInfo(GetDefaultLabelReportMode(model))
             report.ReportPrintOptions.DetailCountOnEmptyDataSource = labelInfo.CalculateLabelCount(paperKindList.Size, paperKindList.UnitDpi)
             If labelInfo.MoreOneColumnOnPage(paperKindList.Size, paperKindList.UnitDpi) Then
                 detail.MultiColumn.ColumnWidth = XRConvert.Convert(labelInfo.LabelWidth, labelDpi, report.Dpi)

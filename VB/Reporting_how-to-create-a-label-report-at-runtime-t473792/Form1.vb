@@ -12,7 +12,8 @@ Namespace dxWinFormsSample
     Partial Public Class Form1
         Inherits DevExpress.XtraEditors.XtraForm
 
-        Private helper As LabelReportValuesHelper
+
+        Private helper_Renamed As LabelReportValuesHelper
         Public Sub New()
             InitializeComponent()
         End Sub
@@ -22,18 +23,18 @@ Namespace dxWinFormsSample
         End Sub
         Private Function CreateLabelReport() As XtraReport
             Dim builder As New CustomLabelReportBuilder()
-            Dim labelReport As XtraReport = builder.GenerateLabelReport(Convert.ToSingle(LabelWidthSpinEdit.EditValue), Convert.ToSingle(LabelHeightSpinEdit.EditValue), Convert.ToSingle(VerticalPitchSpinEdit.EditValue), Convert.ToSingle(HorizontalPitchSpinEdit.EditValue), CType(UnitComboBox.EditValue, GraphicsUnit), Convert.ToSingle(BottomMarginSpinEdit.EditValue), Convert.ToSingle(TopMarginSpinEdit.EditValue), Convert.ToSingle(LeftMarginSpinEdit.EditValue), Convert.ToSingle(RightMarginSpinEdit.EditValue), Convert.ToInt32(lookUpPaperType.EditValue))
+            Dim labelReport As XtraReport = builder.GenerateLabelReport(Convert.ToSingle(LabelWidthSpinEdit.EditValue), Convert.ToSingle(LabelHeightSpinEdit.EditValue), Convert.ToSingle(VerticalPitchSpinEdit.EditValue), Convert.ToSingle(HorizontalPitchSpinEdit.EditValue), DirectCast(UnitComboBox.EditValue, GraphicsUnit), Convert.ToSingle(BottomMarginSpinEdit.EditValue), Convert.ToSingle(TopMarginSpinEdit.EditValue), Convert.ToSingle(LeftMarginSpinEdit.EditValue), Convert.ToSingle(RightMarginSpinEdit.EditValue), Convert.ToInt32(lookUpPaperType.EditValue))
             Return labelReport
         End Function
         Private Shared Sub ShowDesigner(ByVal labelReport As XtraReport)
             If labelReport Is Nothing Then
                 labelReport = New XtraReport()
             End If
-            CType(New ReportDesignTool(labelReport), ReportDesignTool).ShowRibbonDesignerDialog(DevExpress.LookAndFeel.UserLookAndFeel.Default)
+            Call (New ReportDesignTool(labelReport)).ShowRibbonDesignerDialog(DevExpress.LookAndFeel.UserLookAndFeel.Default)
         End Sub
 
-        Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
-            helper = New LabelReportValuesHelper()
+        Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
+            helper_Renamed = New LabelReportValuesHelper()
             InitLabelProductEditor()
             InitProductNumberEditor()
             InitUnitEditor()
@@ -45,7 +46,7 @@ Namespace dxWinFormsSample
         End Sub
         Private Sub InitLabelProductEditor()
             lookUpLabelProduct.Properties.BeginInit()
-            lookUpLabelProduct.Properties.DataSource = helper.GetLabelProducts().ToList()
+            lookUpLabelProduct.Properties.DataSource = helper_Renamed.GetLabelProducts().ToList()
             lookUpLabelProduct.Properties.View.OptionsBehavior.AutoPopulateColumns = False
             lookUpLabelProduct.Properties.View.OptionsView.ShowColumnHeaders = False
             lookUpLabelProduct.Properties.View.OptionsView.ShowIndicator = False
@@ -68,7 +69,7 @@ Namespace dxWinFormsSample
             AddHandler lookUpProductNumber.EditValueChanged, AddressOf LookUpProductNumber_EditValueChanged
         End Sub
         Private Sub InitPaperTypeEditor()
-            lookUpPaperType.Properties.DataSource = helper.GetPaperKinds().ToList()
+            lookUpPaperType.Properties.DataSource = helper_Renamed.GetPaperKinds().ToList()
             lookUpPaperType.Properties.DisplayMember = "Name"
             lookUpPaperType.Properties.ValueMember = "Id"
             lookUpPaperType.Properties.View.OptionsBehavior.AutoPopulateColumns = False
@@ -81,13 +82,12 @@ Namespace dxWinFormsSample
         Private Sub LookUpLabelProduct_EditValueChanged(ByVal sender As Object, ByVal e As EventArgs)
             Dim labelProduct As Integer = 1
             Int32.TryParse((TryCast(sender, BaseEdit)).EditValue.ToString(), labelProduct)
-            Dim sortedProductDetails As IEnumerable(Of LabelDetails) = helper.GetProductDetails(labelProduct)
+            Dim sortedProductDetails As IEnumerable(Of LabelDetails) = helper_Renamed.GetProductDetails(labelProduct)
             lookUpProductNumber.Properties.DataSource = sortedProductDetails.ToList()
             BeginInvoke(CType(Sub()
                 lookUpProductNumber.EditValue = (TryCast(lookUpProductNumber.Properties.DataSource, List(Of LabelDetails))).First().Id
 
-            End Sub, MethodInvoker)
-           )
+            End Sub, MethodInvoker))
         End Sub
         Private Sub LookUpProductNumber_EditValueChanged(ByVal sender As Object, ByVal e As EventArgs)
             Dim gridLookUpEdt = (TryCast(sender, GridLookUpEdit))
@@ -133,14 +133,15 @@ Namespace dxWinFormsSample
                 End If
             End If
         End Sub
-        Private Sub UnitComboBox_Closed(ByVal sender As Object, ByVal e As DevExpress.XtraEditors.Controls.ClosedEventArgs) Handles UnitComboBox.Closed
-            If (TryCast(sender, BaseEdit)).EditValue IsNot Nothing AndAlso TypeOf (TryCast(sender, BaseEdit)).EditValue Is GraphicsUnit Then
-                ConvertValues(CType((TryCast(sender, BaseEdit)).EditValue, GraphicsUnit), LabelWidthSpinEdit.EditValue, LabelHeightSpinEdit.EditValue, VerticalPitchSpinEdit.EditValue, HorizontalPitchSpinEdit.EditValue, BottomMarginSpinEdit.EditValue, TopMarginSpinEdit.EditValue, LeftMarginSpinEdit.EditValue, RightMarginSpinEdit.EditValue)
-            End If
-        End Sub
 
         Private Sub simpleButton1_Click(ByVal sender As Object, ByVal e As EventArgs)
-            CType(New ReportDesignTool(New XtraReport()), ReportDesignTool).ShowRibbonDesignerDialog()
+            Call (New ReportDesignTool(New XtraReport())).ShowRibbonDesignerDialog()
+        End Sub
+
+        Private Sub UnitComboBox_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles UnitComboBox.SelectedIndexChanged
+            If (TryCast(sender, BaseEdit)).EditValue IsNot Nothing AndAlso TypeOf (TryCast(sender, BaseEdit)).EditValue Is GraphicsUnit Then
+                ConvertValues(DirectCast((TryCast(sender, BaseEdit)).EditValue, GraphicsUnit), LabelWidthSpinEdit.EditValue, LabelHeightSpinEdit.EditValue, VerticalPitchSpinEdit.EditValue, HorizontalPitchSpinEdit.EditValue, BottomMarginSpinEdit.EditValue, TopMarginSpinEdit.EditValue, LeftMarginSpinEdit.EditValue, RightMarginSpinEdit.EditValue)
+            End If
         End Sub
     End Class
 End Namespace

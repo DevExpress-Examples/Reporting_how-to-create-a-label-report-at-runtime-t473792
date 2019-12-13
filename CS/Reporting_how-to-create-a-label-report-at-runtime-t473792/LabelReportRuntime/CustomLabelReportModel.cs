@@ -1,4 +1,4 @@
-﻿namespace dxWinFormsSample {
+namespace dxWinFormsSample {
     public class CustomLabelReportModel {
         public float LabelWidth { get; set; } 
         public float LabelHeight { get; set; } 

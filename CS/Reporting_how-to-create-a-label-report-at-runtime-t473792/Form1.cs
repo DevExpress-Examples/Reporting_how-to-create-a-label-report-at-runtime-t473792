@@ -1,4 +1,4 @@
-﻿using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraReports.UI;
 using System;
 using System.Collections.Generic;

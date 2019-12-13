@@ -1,4 +1,4 @@
-﻿using DevExpress.XtraReports.UI;
+using DevExpress.XtraReports.UI;
 using DevExpress.XtraReports.Wizards;
 using DevExpress.XtraPrinting;
 using System.Drawing.Printing;
@@ -53,7 +53,7 @@ namespace dxWinFormsSample {
             panel.Borders = BorderSide.All;
             detail.HeightF = XRConvert.Convert(model.VerticalPitch, labelDpi, report.Dpi);
 
-            var labelInfo = DevExpress.XtraReports.Wizards.Builder.LabelInfoFactory.Create(GetDefaultLabelReportMode(model));
+            var labelInfo = DevExpress.XtraReports.Wizards.Builder.ReportInfoFactory.CreateLabelInfo(GetDefaultLabelReportMode(model));
             report.ReportPrintOptions.DetailCountOnEmptyDataSource = labelInfo.CalculateLabelCount(paperKindList.Size, paperKindList.UnitDpi);
             if (labelInfo.MoreOneColumnOnPage(paperKindList.Size, paperKindList.UnitDpi)) {
                 detail.MultiColumn.ColumnWidth = XRConvert.Convert(labelInfo.LabelWidth, labelDpi, report.Dpi);
