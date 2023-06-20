@@ -13,17 +13,18 @@ Namespace dxWinFormsSample
         Public Sub New()
         End Sub
         Public Function GenerateLabelReport(ByVal width As Single, ByVal height As Single, ByVal vPitch As Single, ByVal hPitch As Single, ByVal measurementUnit As System.Drawing.GraphicsUnit, ByVal bottomMargin As Single, ByVal topMargin As Single, ByVal leftMargin As Single, ByVal rightMargin As Single, ByVal paperKindID As Integer) As XtraReport
-            Dim model As New CustomLabelReportModel()
-            model.LabelWidth = width
-            model.LabelHeight = height
-            model.VerticalPitch = vPitch
-            model.HorizontalPitch = hPitch
-            model.MeasurementUnit = measurementUnit
-            model.BottomMargin = bottomMargin
-            model.LeftMargin = leftMargin
-            model.TopMargin = topMargin
-            model.RightMargin = rightMargin
-            model.PaperKindID = paperKindID
+            Dim model As New CustomLabelReportModel With {
+                .LabelWidth = width,
+                .LabelHeight = height,
+                .VerticalPitch = vPitch,
+                .HorizontalPitch = hPitch,
+                .MeasurementUnit = measurementUnit,
+                .BottomMargin = bottomMargin,
+                .LeftMargin = leftMargin,
+                .TopMargin = topMargin,
+                .RightMargin = rightMargin,
+                .PaperKindID = paperKindID
+            }
             Return BuildLabelReport(model)
         End Function
         Public Function GenerateLabelReport(ByVal model As CustomLabelReportModel) As XtraReport
