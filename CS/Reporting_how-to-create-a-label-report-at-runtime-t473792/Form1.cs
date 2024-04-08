@@ -7,6 +7,7 @@ using System.Linq;
 using DevExpress.XtraEditors;
 using DevExpress.XtraReports.Wizards.Labels;
 using System.Drawing;
+using DevExpress.Drawing;
 
 namespace dxWinFormsSample {
     public partial class Form1 : DevExpress.XtraEditors.XtraForm {
@@ -25,7 +26,7 @@ namespace dxWinFormsSample {
                 Convert.ToSingle(LabelHeightSpinEdit.EditValue),
                 Convert.ToSingle(VerticalPitchSpinEdit.EditValue),
                 Convert.ToSingle(HorizontalPitchSpinEdit.EditValue),
-                (GraphicsUnit)UnitComboBox.EditValue,
+                (DXGraphicsUnit)UnitComboBox.EditValue,
                 Convert.ToSingle(BottomMarginSpinEdit.EditValue),
                 Convert.ToSingle(TopMarginSpinEdit.EditValue),
                 Convert.ToSingle(LeftMarginSpinEdit.EditValue),
@@ -48,8 +49,8 @@ namespace dxWinFormsSample {
             InitPaperTypeEditor();
         }
         private void InitUnitEditor() {
-            UnitComboBox.Properties.Items.AddRange(new System.Drawing.GraphicsUnit[] { System.Drawing.GraphicsUnit.Inch, System.Drawing.GraphicsUnit.Millimeter});
-            UnitComboBox.EditValue = System.Drawing.GraphicsUnit.Millimeter;
+            UnitComboBox.Properties.Items.AddRange(new DXGraphicsUnit[] { DXGraphicsUnit.Inch, DXGraphicsUnit.Millimeter});
+            UnitComboBox.EditValue = DXGraphicsUnit.Millimeter;
         }
         private void InitLabelProductEditor() {            
             lookUpLabelProduct.Properties.BeginInit();

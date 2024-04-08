@@ -6,11 +6,15 @@ using DevExpress.XtraReports.Wizards.Labels;
 using System.Linq;
 using System.Drawing;
 using DevExpress.XtraPrinting.Native;
+using DevExpress.Drawing;
+using DevExpress.Drawing.Extensions;
+using DevExpress.Drawing.Printing;
+using DevExpress.Drawing.Printing.Internal;
 
 namespace dxWinFormsSample {
     public class CustomLabelReportBuilder  {
         public CustomLabelReportBuilder() { }
-        public XtraReport GenerateLabelReport(float width, float height, float vPitch, float hPitch, System.Drawing.GraphicsUnit measurementUnit, float bottomMargin, float topMargin, float leftMargin, float rightMargin, int paperKindID) {
+        public XtraReport GenerateLabelReport(float width, float height, float vPitch, float hPitch, DXGraphicsUnit measurementUnit, float bottomMargin, float topMargin, float leftMargin, float rightMargin, int paperKindID) {
             CustomLabelReportModel model = new CustomLabelReportModel();
             model.LabelWidth = width;
             model.LabelHeight = height;
@@ -30,11 +34,11 @@ namespace dxWinFormsSample {
         private XtraReport BuildLabelReport(CustomLabelReportModel model) {
             var report = new XtraReport();
             PaperKindList paperKindList = InitPaperKindList(model, report);
-            report.ReportUnit = model.MeasurementUnit == System.Drawing.GraphicsUnit.Millimeter ? ReportUnit.TenthsOfAMillimeter : ReportUnit.HundredthsOfAnInch;
+            report.ReportUnit = model.MeasurementUnit == DXGraphicsUnit.Millimeter ? ReportUnit.TenthsOfAMillimeter : ReportUnit.HundredthsOfAnInch;
             report.PaperKind = paperKindList.PaperKind;
             report.Landscape = paperKindList.Landscape;
             report.RollPaper = false;
-            float labelDpi = GraphicsDpi.UnitToDpi(model.MeasurementUnit);
+            float labelDpi = model.MeasurementUnit.ToDpi();
             int top = (int)XRConvert.Convert(model.TopMargin, labelDpi, report.Dpi);
             int left = (int)XRConvert.Convert(model.LeftMargin, labelDpi, report.Dpi);
             int right = (int)XRConvert.Convert(model.RightMargin, labelDpi, report.Dpi);
@@ -91,11 +95,11 @@ namespace dxWinFormsSample {
             return paperKindList;
         }
         static PaperKindItem ConvertToPaperKindItem(PaperKindData paperKindData) {
-            float dpi = DevExpress.XtraPrinting.GraphicsDpi.UnitToDpi(paperKindData.Unit);
-            var paperKind = (PaperKind)paperKindData.EnumId;
-            SizeF size = paperKind == PaperKind.Custom
+            float dpi = paperKindData.Unit.ToDpi();
+            var paperKind = (DXPaperKind)paperKindData.EnumId;
+            SizeF size = paperKind == DXPaperKind.Custom
                 ? new SizeF(paperKindData.Width, paperKindData.Height)
-                : PageSizeInfo.GetPageSizeF(paperKind, dpi, PageSizeInfo.DefaultSize);
+                : DXPageSizeInfo.GetPageSizeF(paperKind, dpi, DXPageSizeInfo.DefaultSize);
             return new PaperKindItem(paperKindData.Name, size, paperKindData.Id, paperKind, dpi, paperKindData.IsRollPaper);
         }
     }
