@@ -9,6 +9,7 @@ using DevExpress.XtraPrinting.Native;
 using DevExpress.Drawing;
 using DevExpress.Drawing.Extensions;
 using DevExpress.Drawing.Printing;
+using DevExpress.Drawing.Printing.Internal;
 
 namespace dxWinFormsSample {
     public class CustomLabelReportBuilder  {
@@ -98,7 +99,7 @@ namespace dxWinFormsSample {
             var paperKind = (DXPaperKind)paperKindData.EnumId;
             SizeF size = paperKind == DXPaperKind.Custom
                 ? new SizeF(paperKindData.Width, paperKindData.Height)
-                : PageSizeInfo.GetPageSizeF(paperKind, dpi, PageSizeInfo.DefaultSize);
+                : DXPageSizeInfo.GetPageSizeF(paperKind, dpi, DXPageSizeInfo.DefaultSize);
             return new PaperKindItem(paperKindData.Name, size, paperKindData.Id, paperKind, dpi, paperKindData.IsRollPaper);
         }
     }
