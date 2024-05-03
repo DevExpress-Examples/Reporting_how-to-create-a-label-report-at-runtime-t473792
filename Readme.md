@@ -6,11 +6,11 @@
 <!-- default file list -->
 *Files to look at*:
 
-* [Form1.cs](./CS/Reporting_how-to-create-a-label-report-at-runtime-t473792/Form1.cs) (VB: [Form1.vb](./VB/Reporting_how-to-create-a-label-report-at-runtime-t473792/Form1.vb))
-* [CustomLabelReportBuilder.cs](./CS/Reporting_how-to-create-a-label-report-at-runtime-t473792/LabelReportRuntime/CustomLabelReportBuilder.cs) (VB: [CustomLabelReportBuilder.vb](./VB/Reporting_how-to-create-a-label-report-at-runtime-t473792/LabelReportRuntime/CustomLabelReportBuilder.vb))
-* [CustomLabelReportModel.cs](./CS/Reporting_how-to-create-a-label-report-at-runtime-t473792/LabelReportRuntime/CustomLabelReportModel.cs) (VB: [CustomLabelReportModel.vb](./VB/Reporting_how-to-create-a-label-report-at-runtime-t473792/LabelReportRuntime/CustomLabelReportModel.vb))
-* [LabelReportValuesHelper.cs](./CS/Reporting_how-to-create-a-label-report-at-runtime-t473792/LabelReportRuntime/LabelReportValuesHelper.cs) (VB: [LabelReportValuesHelper.vb](./VB/Reporting_how-to-create-a-label-report-at-runtime-t473792/LabelReportRuntime/LabelReportValuesHelper.vb))
-* [Program.cs](./CS/Reporting_how-to-create-a-label-report-at-runtime-t473792/Program.cs) (VB: [Program.vb](./VB/Reporting_how-to-create-a-label-report-at-runtime-t473792/Program.vb))
+* [Form1.cs](CS/Reporting_how-to-create-a-label-report-at-runtime-t473792/Form1.cs) (VB: [Form1.vb](VB/Reporting_how-to-create-a-label-report-at-runtime-t473792/Form1.vb))
+* [CustomLabelReportBuilder.cs](CS/Reporting_how-to-create-a-label-report-at-runtime-t473792/LabelReportRuntime/CustomLabelReportBuilder.cs) (VB: [CustomLabelReportBuilder.vb](VB/Reporting_how-to-create-a-label-report-at-runtime-t473792/LabelReportRuntime/CustomLabelReportBuilder.vb))
+* [CustomLabelReportModel.cs](CS/Reporting_how-to-create-a-label-report-at-runtime-t473792/LabelReportRuntime/CustomLabelReportModel.cs) (VB: [CustomLabelReportModel.vb](VB/Reporting_how-to-create-a-label-report-at-runtime-t473792/LabelReportRuntime/CustomLabelReportModel.vb))
+* [LabelReportValuesHelper.cs](CS/Reporting_how-to-create-a-label-report-at-runtime-t473792/LabelReportRuntime/LabelReportValuesHelper.cs) (VB: [LabelReportValuesHelper.vb](VB/Reporting_how-to-create-a-label-report-at-runtime-t473792/LabelReportRuntime/LabelReportValuesHelper.vb))
+* [Program.cs](CS/Reporting_how-to-create-a-label-report-at-runtime-t473792/Program.cs) (VB: [Program.vb](VB/Reporting_how-to-create-a-label-report-at-runtime-t473792/Program.vb))
 <!-- default file list end -->
 # How to create a label report at runtime
 
